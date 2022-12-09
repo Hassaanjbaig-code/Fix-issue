@@ -37,15 +37,15 @@ export default class todoc {
             maintext.classList.add('border');
             maintext.focus();
         });
-        maintext.addEventListener('change', e => {
-            // console.log(e.target.value);
-            maintext.setAttribute('readOnly','readOnly');
-            maintext.classList.remove('border');
-           const { id } = e.currentTarget.parentElement.parentElement;
-           e.target.value = maintext.value;
-           console.log(e.currentTarget.parentElement);
-           this.collection[id].title = e.currentTarget.value;
-           console.log(this.collection);
+        maintext.addEventListener('keypress', e => {
+            if(e.key === "Enter") {
+                const title = e.target.value;
+                const id = e.target.parentElement.id;
+                
+                // tergetting on the index;
+                this.collection[(new Number(id))-1].title = title;
+                console.log(this.collection)
+            }
      });
        main.append(
          checkbox,
